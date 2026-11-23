@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>드래곤볼 대전 현황</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <header>
+        <h1>드래곤볼 대전 현황</h1>
+        <p>출전 캐릭터 최대 HP 순위</p>
+      </header>
+
+      <!-- 크롤링 시작 / 중지 -->
+      <div class="buttons">
+        <button id="startBtn" class="start-btn">시작</button>
+
+        <button id="stopBtn" class="stop-btn" disabled>중지</button>
+      </div>
+
+      <!-- 실행 상태 -->
+      <div class="status">
+        <span id="statusText">대기 중</span>
+        <span id="updatedAt">마지막 갱신: -</span>
+      </div>
+
+      <p id="message" role="status"></p>
+
+      <!-- 좌우 레이아웃 -->
+      <div class="battle-layout">
+        <!-- 왼쪽: 우리 팀 프로필 (1/3) -->
+        <section class="my-team-status">
+          <h2>우리 팀</h2>
+
+          <!-- 프로필 이미지 -->
+          <img
+            id="profileImg"
+            class="team-profile-img"
+            alt="우리 팀 프로필"
+            hidden
+          />
+
+          <!-- HP 정보 -->
+          <div class="team-hp-info">
+            <div class="team-hp-header">
+              <span class="team-hp-label">TEAM HP</span>
+
+              <div class="team-hp-value">
+                <strong id="myTeamHp">-</strong>
+                <span>/</span>
+                <span id="myTeamMaxHp">-</span>
+              </div>
+            </div>
+
+            <!-- HP 게이지 -->
+            <div
+              id="hpProgress"
+              class="hp-progress"
+              role="progressbar"
+              aria-label="우리 팀 HP"
+              aria-valuemin="0"
+            >
+              <div id="hpBar" class="hp-bar"></div>
+            </div>
+
+            <div id="hpPercent" class="hp-percent">-</div>
+          </div>
+
+          <!-- skills -->
+
+          <!-- 우리 팀 출전 캐릭터 스킬 -->
+          <div class="team-skills">
+            <div class="team-skills-header">
+              <h3>출전 스킬</h3>
+
+              <div class="defeat-star">
+                처치 시 상대 획득
+                <strong> ★ <span id="myDefeatStar">-</span> </strong>
+              </div>
+            </div>
+
+            <!-- 스킬 목록: JavaScript에서 생성 -->
+            <div id="mySkillList" class="skill-list">
+              <p class="skill-empty">스킬 정보가 없습니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 오른쪽: 출전 캐릭터 순위 (2/3) -->
+        <section class="ranking">
+          <h2>출전 캐릭터 HP</h2>
+
+          <div class="ranking-scroll">
+            <table id="rankingTable" hidden>
+              <thead>
+                <tr>
+                  <th>순위</th>
+                  <th>팀 이름</th>
+                  <th>출전 캐릭터</th>
+                  <th>최대 HP</th>
+                </tr>
+              </thead>
+
+              <tbody id="rankingBody"></tbody>
+            </table>
+          </div>
+
+          <p id="emptyMessage">시작 버튼을 눌러주세요.</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
